@@ -17,10 +17,26 @@ Mongoose.connection.once('open', () => console.log("Connected to database!"));
 // The Express.json middleware provides easy to use JSON on POST requests.
 // Specify where the compiled React app lives (copied the files manually from the client build)
 const clientAppDirectory = path.join(__dirname, '../public', 'build');
+
 app.use(Express.json());
 app.use(Express.static(clientAppDirectory));
 // When a GET request comes in on this route, find all users in the database and return them with a 200 code
+app.post('/api/postly', (request, response) => {
+    console.log('Received request: ' + JSON.stringify(request.body));
+    const { testData } = request.body;
+    // If the data is a string called 'teapot', return the teapot status code
+    if (testData === 'teapot') {
+        return response.sendStatus(418);
+    }
+    // Simply return whatever the client sent to show that the server received it
+    return response.status(200).send('You said ' + testData);
+});
 
+// Any other GET request that doesn't match previous routes should return the website
+app.get('/*', (request, response) => {
+    const indexPath = path.join(clientAppDirectory, 'index.html');
+    return response.sendFile(indexPath);
+});
 app.get('/api/user', async (request, response) => {
 
     console.log('A GET request came in asking for all users');
