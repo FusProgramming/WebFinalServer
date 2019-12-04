@@ -86,11 +86,8 @@ app.post('/api/users', async (request, response) => {
 
 //----------------------------------------------------------------------------------------------------------------------
 app.get('/api/beer', async (request, response) => {
-
     console.log('A GET request came in asking for all users');
-
     const beers = await Beer.find({});
-
     return response.send(beers).status(200);
 });
 
@@ -126,11 +123,8 @@ app.delete('/api/beer/', async (request, response) => {
     try {
 
         console.log('Delete Request');
+        const beers = await Beer.deleteOne({});
 
-        const beers = await Beer.findOne({});
-
-        console.log(storeName);
-        console.log(beers);
         return response.send(beers).status(200);
     } catch (error) {
         console.error('Something went wrong while trying to delete: ' + error.message);
