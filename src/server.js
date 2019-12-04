@@ -95,11 +95,8 @@ app.get('/api/beer', async (request, response) => {
 app.post('/api/beers', async (request, response) => {
 
     console.log('A request came in with the body: ' + JSON.stringify(request.body));
-
     const { storeName, beerName, beerType, address, city, state} = request.body;
-
     try {
-
         await Beer.create({
             storeName: storeName,
             beerName: beerName,
@@ -134,5 +131,5 @@ app.delete('/api/beer/', async (request, response) => {
 
 
 
-const port = process.env.PORT || 4100;
+const port = process.env.PORT || 4300;
 app.listen(port, () => console.log(`Server has started on localhost:${port}`));
