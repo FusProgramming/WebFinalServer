@@ -79,7 +79,6 @@ app.post('/api/users', async (request, response) => {
 //----------------------------------------------------------------------------------------------------------------------
 app.get('/api/beer', async (request, response) => {
     console.log('A GET request came in asking for all users');
-    path.join(clientAppDirectory, 'index.html');
     const beers = await Beer.find({});
     return response.sendFile(beers).status(200);
 });
@@ -100,7 +99,7 @@ app.post('/api/beers', async (request, response) => {
         });
 
         console.log(`A new user was created with name: '${storeName}' and email address: '${beerName}'`);
-        return response.sendStatus(200);
+        return response.sendStatus(200).send('You said ' + Beer);
 
     } catch (error) {
         console.error('Something went wrong while creating a new user: ' + error.message);
