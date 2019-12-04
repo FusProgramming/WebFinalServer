@@ -16,7 +16,7 @@ Mongoose.connection.once('open', () => console.log("Connected to database!"));
 app.get('/api/beer', async (request, response) => {
     console.log('A GET request came in asking for all users');
     const beers = await Beer.find({});
-    return response.send(beers).status(200);
+    return response.sendFile(beers).status(200);
 });
 
 // When a POST request comes in on this route, create a new user and return success with a 200 code or failure with a 400 code
