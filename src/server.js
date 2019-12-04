@@ -9,7 +9,7 @@ const Beer = require('./models/beer');
 const Post = require('./models/registerpost');
 const app = Express();
 
-const uri = "mongodb://localhost:27017/lol";
+const uri = 'mongodb://localhost:27017/lol';
 // Connect to the 'test' database. Ensure you have started the mongod process!
 Mongoose.connect(uri , {useNewUrlParser: true});
 // When Mongoose has connected to your MongoDB, print out a log message
