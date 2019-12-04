@@ -22,7 +22,6 @@ Mongoose.connection.once('open', () => console.log("Connected to database!"));
 const clientAppDirectory = path.join(__dirname, '../public', 'build');
 app.use(Express.static(clientAppDirectory));
 // When a GET request comes in on this route, find all users in the database and return them with a 200 code
-
 app.post('/api/postly', (request, response) => {
     console.log('Received request: ' + JSON.stringify(request.body));
     const { testData } = request.body;
