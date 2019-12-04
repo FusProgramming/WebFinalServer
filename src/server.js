@@ -24,12 +24,11 @@ app.use(Express.static(clientAppDirectory));
 app.post('/api/postly', (request, response) => {
     console.log('Received request: ' + JSON.stringify(request.body));
     const { testData } = request.body;
-    // If the data is a string called 'teapot', return the teapot status code
     if (testData === 'teapot') {
         return response.sendStatus(418);
     }
     // Simply return whatever the client sent to show that the server received it
-    return response.status(200).send('You said ' + testData);
+    return response.status(200);
 });
 
 // Any other GET request that doesn't match previous routes should return the website
@@ -99,7 +98,7 @@ app.post('/api/beers', async (request, response) => {
         });
 
         console.log(`A new user was created with name: '${storeName}' and email address: '${beerName}'`);
-        return response.sendStatus(200).send('You said ' + Beer);
+        return response.sendStatus(200);
 
     } catch (error) {
         console.error('Something went wrong while creating a new user: ' + error.message);
