@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Beer = require('./models/beer');
+const Beer = require('../../models/beer');
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -47,3 +47,5 @@ app.delete('/api/beer/', async (request, response) => {
         return response.sendStatus(400);
     }
 });
+
+module.exports = router;
