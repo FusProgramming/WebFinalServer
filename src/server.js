@@ -82,8 +82,6 @@ app.post('/api/users', async (request, response) => {
     }
 });
 
-
-
 //----------------------------------------------------------------------------------------------------------------------
 app.get('/api/beer', async (request, response) => {
     console.log('A GET request came in asking for all users');
