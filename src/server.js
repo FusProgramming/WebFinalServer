@@ -5,7 +5,6 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/user');
-const Beer = require('./models/beer');
 const Post = require('./models/registerpost');
 const app = Express();
 
@@ -21,6 +20,8 @@ Mongoose.connection.once('open', () => console.log("Connected to database!"));
 // Specify where the compiled React app lives (copied the files manually from the client build)
 const clientAppDirectory = path.join(__dirname, '../public', 'build');
 app.use(Express.static(clientAppDirectory));
+app.use('/api/beers', require('./routes/api/beers'));
+
 // When a GET request comes in on this route, find all users in the database and return them with a 200 code
 app.post('/api/postly', (request, response) => {
     console.log('Received request: ' + JSON.stringify(request.body));
@@ -75,51 +76,6 @@ app.post('/api/users', async (request, response) => {
         return response.sendStatus(200);
     } catch (error) {
         console.error('Something went wrong while creating a new user: ' + error.message);
-        return response.sendStatus(400);
-    }
-});
-
-//----------------------------------------------------------------------------------------------------------------------
-app.get('/api/beer', async (request, response) => {
-    console.log('A GET request came in asking for all users');
-    const beers = await Beer.find({});
-    return response.send(beers).status(200);
-});
-
-// When a POST request comes in on this route, create a new user and return success with a 200 code or failure with a 400 code
-app.post('/api/beers', async (request, response) => {
-
-    console.log('A request came in with the body: ' + JSON.stringify(request.body));
-    const { storeName, beerName, beerType, address, city, state} = request.body;
-    try {
-        await Beer.create({
-            storeName: storeName,
-            beerName: beerName,
-            beerType: beerType,
-            address: address,
-            city: city,
-            state: state
-        });
-
-        console.log(`A new user was created with name: '${storeName}' and email address: '${beerName}'`);
-        return response.sendStatus(200);
-
-    } catch (error) {
-        console.error('Something went wrong while creating a new user: ' + error.message);
-        return response.sendStatus(400);
-    }
-});
-
-app.delete('/api/beer/', async (request, response) => {
-    const { beerId, storeName, beerName, beerType, address, city, state} = request.body;
-    try {
-
-        console.log('Delete Request');
-        const beers = await Beer.deleteOne({});
-
-        return response.send(beers).status(200);
-    } catch (error) {
-        console.error('Something went wrong while trying to delete: ' + error.message);
         return response.sendStatus(400);
     }
 });
