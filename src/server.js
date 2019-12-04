@@ -1,12 +1,10 @@
-
 const Express = require('express');
 const Mongoose = require('mongoose');
 const path = require('path');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const User = require('./models/user');
 const Beer = require('./models/beer');
-const Post = require('./models/registerpost');
+
 const app = Express();
 
 const uri = 'mongodb+srv://RobFus:H2runo01-bass01@cluster0-b9vqw.mongodb.net/test?retryWrites=true&w=majority';
@@ -123,8 +121,6 @@ app.delete('/api/beer/', async (request, response) => {
         return response.sendStatus(400);
     }
 });
-
-
 
 const port = process.env.PORT || 4300;
 app.listen(port, () => console.log(`Server has started on localhost:${port}`));
