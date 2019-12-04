@@ -9,7 +9,7 @@ const Beer = require('./models/beer');
 const Post = require('./models/registerpost');
 const app = Express();
 
-var uri = mongodb+srv://RobFus:H2runo01-bass01@cluster0-b9vqw.mongodb.net/test?retryWrites=true&w=majority;
+var uri = "mongodb+srv://RobFus:H2runo01-bass01@cluster0-b9vqw.mongodb.net/test?retryWrites=true&w=majority";
 // Connect to the 'test' database. Ensure you have started the mongod process!
 Mongoose.connect(uri || 'mongodb://localhost:27017/test', {useNewUrlParser: true});
 // When Mongoose has connected to your MongoDB, print out a log message
