@@ -9,7 +9,7 @@ const app = Express();
 
 const uri = 'mongodb+srv://RobFus:H2runo01-bass01@cluster0-b9vqw.mongodb.net/test?retryWrites=true&w=majority';
 // Connect to the 'test' database. Ensure you have started the mongod process!
-Mongoose.connect(uri , {useNewUrlParser: true});
+Mongoose.connect(uri , {useNewUrlParser: true, useCreateIndex: true});
 // When Mongoose has connected to your MongoDB, print out a log message
 Mongoose.connection.once('open', () => console.log("Connected to database!"));
 //----------------------------------------------------------------------------------------------------------------------
