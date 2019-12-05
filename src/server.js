@@ -121,15 +121,6 @@ app.post("/api/sessions", async (request, response) => {
         return response.sendStatus(400);
     });
 });
-app.get("/*", (request, response) => {
-    const indexPath = path.join(clientAppDirectory, "index.html");
 
-    return response.sendFile(indexPath);
-});
-
-const port = process.env.PORT;
-if (port == null || port == "") {
-    port = 8000;
-}
-app.listen(port);
+const port = process.env.PORT || 4800;
 app.listen(port, () => console.log(`Server has started on localhost:${port}`));
