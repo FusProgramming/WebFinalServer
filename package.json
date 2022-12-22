@@ -16,7 +16,7 @@
     "bcryptjs": "^2.4.3",
     "config": "^3.2.4",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.7.12",
     "mongoose-find-and-filter": "^1.0.0",
     "node": "^13.3.0",
